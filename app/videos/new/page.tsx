@@ -1,5 +1,5 @@
 "use server";
-import { CreateVideoForm } from "../CreateVideoForm";
+import { CreateVideoForm } from "./CreateVideoForm";
 import Link from "next/link";
 
 export default async function NewVideoPage() {
