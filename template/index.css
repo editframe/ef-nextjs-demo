@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 0 0 0;
+  }
+}
+
+/* Add styles for form inputs */
+@layer components {
+
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    @apply bg-white text-gray-900 border-gray-300 focus:ring-blue-500 focus:border-blue-500;
+  }
+}
