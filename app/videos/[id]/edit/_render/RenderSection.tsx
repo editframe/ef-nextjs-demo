@@ -12,7 +12,7 @@ export const RenderSection = ({
   renderRecords: RenderRecord[];
 }) => {
   return (
-    <section>
+    <section className="max-h-[100vh] overflow-y-auto">
       <RenderButton video={video} videoImages={videoImages} />
       <div className="mt-6">
         <RenderList renderRecords={renderRecords} />

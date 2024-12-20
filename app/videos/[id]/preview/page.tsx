@@ -12,7 +12,7 @@ export default async function PreviewVideoPage({ params }: { params: { id: strin
   `, videoId);
 
   const videoImages = query<Image>(/* SQL */`
-    SELECT * FROM images WHERE video_id = ?
+    SELECT * FROM images WHERE video_id = ? ORDER BY created_at DESC
   `, videoId);
 
   if (!video) {

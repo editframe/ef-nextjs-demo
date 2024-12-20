@@ -18,11 +18,11 @@ export default async function EditVideoPage({
   `, videoId)
 
   const videoImages = query<Image>(/* SQL */`
-    SELECT * FROM images WHERE video_id = ?
+    SELECT * FROM images WHERE video_id = ? ORDER BY created_at DESC
   `, videoId)
 
   const renderRecords = query<RenderRecord>(/* SQL */`
-    SELECT * FROM render_records WHERE video_id = ?
+    SELECT * FROM render_records WHERE video_id = ? ORDER BY created_at DESC
   `, videoId)
 
   if (!video) {

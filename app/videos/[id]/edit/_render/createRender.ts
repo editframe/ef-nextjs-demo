@@ -7,6 +7,7 @@ import { bundleRender } from '@editframe/api/bundleRender';
 import { Video, Image, exec, query, RenderRecord } from '@/app/lib/db';
 import { editframeClient } from '@/app/lib/editframeClient';
 import { VideoTemplateProps } from '@/video-components/VideoTemplate';
+import { revalidatePath } from 'next/cache';
 
 export async function createRender(
   video: Video,
@@ -51,15 +52,17 @@ export async function createRender(
 
   await api.uploadRender(editframeClient, render.id, tarStream);
 
-  const renderProgress = await api.getRenderProgress(editframeClient, render.id);
+  async function* renderProgress() {
+    for await (const progressUpdate of await api.getRenderProgress(editframeClient, render.id)) {
+      yield progressUpdate;
+    }
 
-  renderProgress.whenComplete().then(() => {
     exec(/* SQL */`
       UPDATE render_records
-      SET status = "complete"
+      SET status = 'complete'
       WHERE id = ?
     `, renderRecord.id);
-  });
+  }
 
-  return renderProgress;
+  return renderProgress();
 }

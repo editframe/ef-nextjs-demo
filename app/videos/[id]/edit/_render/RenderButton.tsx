@@ -24,7 +24,6 @@ export default function RenderButton({ video, videoImages }: { video: Video, vid
               }
             }
 
-
             // Revalidate the page data instead of full reload
             router.refresh();
             setIsRendering(false);
