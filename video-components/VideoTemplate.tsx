@@ -26,11 +26,6 @@ const VideoTemplate = ({ video, width, height, bgColor, images }: VideoTemplateP
       }}
     >
       <Timegroup mode="contain">
-        <Audio id="audio-demo" assetId="e6ae39ad-8c8c-4495-8d3c-71b2f03a5669" />
-        <div className="font-mono absolute top-0 left-0 right-0 p-[10px] flex flex-col gap-2 bg-black/50 text-pink-400 z-10">
-          <Waveform target="audio-demo" className="w-full h-12 bg-yellow-200 block" />
-          {(ownCurrentTimeMs / 1000).toFixed(2)} / {(durationMs / 1000).toFixed(2)}
-        </div>
         <Timegroup mode="sequence">
           <Timegroup mode="contain" className="flex flex-col items-center justify-center">
             <Video id="bars-n-tone" assetId="2506190f-2e84-4a29-b8a3-9b7a80e439d8" />
