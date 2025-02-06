@@ -43,16 +43,9 @@ export type RenderRecord = {
   updated_at: number;
 }
 
-export async function initializeDatabase() {
+export function initializeDatabase() {
   if (process.env.NODE_ENV !== 'test') {
-    try {
-      // Ensure tables exist
-      await createTables();
-      console.log('✅ Database tables created/verified');
-    } catch (error) {
-      console.error('❌ Database initialization failed:', error);
-      throw error;
-    }
+    createTables();
   }
 }
 

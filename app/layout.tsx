@@ -4,7 +4,11 @@ import { initializeDatabase } from '@/app/lib/db';
 
 // Initialize database on app startup
 if (process.env.NODE_ENV !== 'test') {
-  initializeDatabase().catch(console.error);
+  try {
+    initializeDatabase();
+  } catch (error) {
+    console.error('❌ Database initialization failed:', error);
+  }
 }
 
 export const metadata: Metadata = {
