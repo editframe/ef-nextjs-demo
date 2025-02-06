@@ -26,15 +26,16 @@ export async function createRender(
       created_at: image.created_at,
       filename: image.filename,
       caption: image.caption,
-      strategy: "v1"
     }))
   } satisfies VideoTemplateProps
 
+  console.log("Rendering", renderData)
   const tarStream = await bundleRender({
     root: templatePath,
     renderData
   })
 
+  console.log("Creating render")
   const render = await api.createRender(
     editframeClient,
     {
@@ -42,6 +43,7 @@ export async function createRender(
     }
   )
 
+  console.log("Created render", render)
   const [renderRecord] = query<RenderRecord>(/* SQL */`
     INSERT INTO render_records (render_id, video_id, status)
     VALUES (?, ?, ?)
@@ -49,6 +51,7 @@ export async function createRender(
   `, render.id, video.id, "created");
 
 
+  console.log("Uploading render")
   await api.uploadRender(editframeClient, render.id, tarStream);
 
   async function* renderProgress() {
