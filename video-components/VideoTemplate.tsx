@@ -27,11 +27,6 @@ const VideoTemplate = ({ video, width, height, bgColor, images }: VideoTemplateP
     >
       <Timegroup mode="contain">
         <Timegroup mode="sequence">
-          <Timegroup mode="contain" className="flex flex-col items-center justify-center">
-            <Video id="bars-n-tone" assetId="2506190f-2e84-4a29-b8a3-9b7a80e439d8" />
-            <Waveform target="bars-n-tone" className="w-full h-12 bg-yellow-200 block" />
-          </Timegroup>
-
           <Timegroup className="relative flex flex-col gap-2 items-center justify-center" mode="fixed" duration="3s">
             <h1 className="text-white text-2xl font-bold">{video.title}</h1>
             <p className="text-white text-sm">{video.description}</p>
